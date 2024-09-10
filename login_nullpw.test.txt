@@ -1,0 +1,12 @@
+# Make sure user can't login with null password.
+
+# commands to execute:
+create test2 test16 1000
+login test2
+quit
+*
+
+# expected output:
+Created user test2
+Error: Please provide a username and passwordGoodbye
+*

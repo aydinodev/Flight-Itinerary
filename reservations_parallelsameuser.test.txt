@@ -1,0 +1,127 @@
+# Two terminals create same user that performs multiple operations
+# to check if reservations updates correctly
+
+##################### Terminal 1: #####################
+
+# commands/input:
+create test1 test1 10000
+login test1 test1
+search "Seattle WA" "Los Angeles CA" 1 1 2
+book 0
+search "Seattle WA" "Los Angeles CA" 1 2 2
+book 1
+pay 1
+pay 2
+reservations
+quit
+*
+
+# Scenario 1 of 2: User created, logs in, books two flights, 
+# pays for them, and shows reservations successfully
+Created user test1
+Logged in as test1
+Itinerary 0: 1 flight(s), 139 minutes
+ID: 66513 Day: 1 Carrier: AS Number: 292 Origin: Seattle WA Dest: Los Angeles CA Duration: 139 Capacity: 10 Price: 993
+Itinerary 1: 1 flight(s), 142 minutes
+ID: 493442 Day: 1 Carrier: UA Number: 1167 Origin: Seattle WA Dest: Los Angeles CA Duration: 142 Capacity: 19 Price: 882
+Booked flight(s), reservation ID: 1
+Itinerary 0: 1 flight(s), 140 minutes
+ID: 66514 Day: 2 Carrier: AS Number: 292 Origin: Seattle WA Dest: Los Angeles CA Duration: 140 Capacity: 3 Price: 641
+Itinerary 1: 1 flight(s), 140 minutes
+ID: 477237 Day: 2 Carrier: UA Number: 495 Origin: Seattle WA Dest: Los Angeles CA Duration: 140 Capacity: 12 Price: 882
+Booked flight(s), reservation ID: 2
+Paid reservation: 1 remaining balance: 9007
+Paid reservation: 2 remaining balance: 8125
+Reservation 1 paid: true:
+ID: 66513 Day: 1 Carrier: AS Number: 292 Origin: Seattle WA Dest: Los Angeles CA Duration: 139 Capacity: 10 Price: 993
+Reservation 2 paid: true:
+ID: 477237 Day: 2 Carrier: UA Number: 495 Origin: Seattle WA Dest: Los Angeles CA Duration: 140 Capacity: 12 Price: 882
+Goodbye
+
+|
+
+# Scenario 2 of 2: User isn't created, books two flights, 
+# pays for them, and shows reservations successfully
+Failed to create user
+Logged in as test1
+Itinerary 0: 1 flight(s), 139 minutes
+ID: 66513 Day: 1 Carrier: AS Number: 292 Origin: Seattle WA Dest: Los Angeles CA Duration: 139 Capacity: 10 Price: 993
+Itinerary 1: 1 flight(s), 142 minutes
+ID: 493442 Day: 1 Carrier: UA Number: 1167 Origin: Seattle WA Dest: Los Angeles CA Duration: 142 Capacity: 19 Price: 882
+You cannot book two flights in the same day
+Itinerary 0: 1 flight(s), 140 minutes
+ID: 66514 Day: 2 Carrier: AS Number: 292 Origin: Seattle WA Dest: Los Angeles CA Duration: 140 Capacity: 3 Price: 641
+Itinerary 1: 1 flight(s), 140 minutes
+ID: 477237 Day: 2 Carrier: UA Number: 495 Origin: Seattle WA Dest: Los Angeles CA Duration: 140 Capacity: 12 Price: 882
+You cannot book two flights in the same day
+Cannot find unpaid reservation 1 under user: test1
+Cannot find unpaid reservation 2 under user: test1
+Reservation 1 paid: true:
+ID: 66513 Day: 1 Carrier: AS Number: 292 Origin: Seattle WA Dest: Los Angeles CA Duration: 139 Capacity: 10 Price: 993
+Reservation 2 paid: true:
+ID: 477237 Day: 2 Carrier: UA Number: 495 Origin: Seattle WA Dest: Los Angeles CA Duration: 140 Capacity: 12 Price: 882
+Goodbye
+
+*
+
+##################### Terminal 2: #####################
+
+# commands/input:
+create test1 test1 10000
+login test1 test1
+search "Seattle WA" "Los Angeles CA" 1 1 2
+book 0
+search "Seattle WA" "Los Angeles CA" 1 2 2
+book 1
+pay 1
+pay 2
+reservations
+quit
+*
+
+# Scenario 1 of 2: User isn't created, books two flights, 
+# pays for them, and shows reservations successfully
+Failed to create user
+Logged in as test1
+Itinerary 0: 1 flight(s), 139 minutes
+ID: 66513 Day: 1 Carrier: AS Number: 292 Origin: Seattle WA Dest: Los Angeles CA Duration: 139 Capacity: 10 Price: 993
+Itinerary 1: 1 flight(s), 142 minutes
+ID: 493442 Day: 1 Carrier: UA Number: 1167 Origin: Seattle WA Dest: Los Angeles CA Duration: 142 Capacity: 19 Price: 882
+You cannot book two flights in the same day
+Itinerary 0: 1 flight(s), 140 minutes
+ID: 66514 Day: 2 Carrier: AS Number: 292 Origin: Seattle WA Dest: Los Angeles CA Duration: 140 Capacity: 3 Price: 641
+Itinerary 1: 1 flight(s), 140 minutes
+ID: 477237 Day: 2 Carrier: UA Number: 495 Origin: Seattle WA Dest: Los Angeles CA Duration: 140 Capacity: 12 Price: 882
+You cannot book two flights in the same day
+Cannot find unpaid reservation 1 under user: test1
+Cannot find unpaid reservation 2 under user: test1
+Reservation 1 paid: true:
+ID: 66513 Day: 1 Carrier: AS Number: 292 Origin: Seattle WA Dest: Los Angeles CA Duration: 139 Capacity: 10 Price: 993
+Reservation 2 paid: true:
+ID: 477237 Day: 2 Carrier: UA Number: 495 Origin: Seattle WA Dest: Los Angeles CA Duration: 140 Capacity: 12 Price: 882
+Goodbye
+
+|
+
+# Scenario 2 of 2: User created, logs in, books two flights, 
+# pays for them, and shows reservations successfully
+Created user test1
+Logged in as test1
+Itinerary 0: 1 flight(s), 139 minutes
+ID: 66513 Day: 1 Carrier: AS Number: 292 Origin: Seattle WA Dest: Los Angeles CA Duration: 139 Capacity: 10 Price: 993
+Itinerary 1: 1 flight(s), 142 minutes
+ID: 493442 Day: 1 Carrier: UA Number: 1167 Origin: Seattle WA Dest: Los Angeles CA Duration: 142 Capacity: 19 Price: 882
+Booked flight(s), reservation ID: 1
+Itinerary 0: 1 flight(s), 140 minutes
+ID: 66514 Day: 2 Carrier: AS Number: 292 Origin: Seattle WA Dest: Los Angeles CA Duration: 140 Capacity: 3 Price: 641
+Itinerary 1: 1 flight(s), 140 minutes
+ID: 477237 Day: 2 Carrier: UA Number: 495 Origin: Seattle WA Dest: Los Angeles CA Duration: 140 Capacity: 12 Price: 882
+Booked flight(s), reservation ID: 2
+Paid reservation: 1 remaining balance: 9007
+Paid reservation: 2 remaining balance: 8125
+Reservation 1 paid: true:
+ID: 66513 Day: 1 Carrier: AS Number: 292 Origin: Seattle WA Dest: Los Angeles CA Duration: 139 Capacity: 10 Price: 993
+Reservation 2 paid: true:
+ID: 477237 Day: 2 Carrier: UA Number: 495 Origin: Seattle WA Dest: Los Angeles CA Duration: 140 Capacity: 12 Price: 882
+Goodbye
+*

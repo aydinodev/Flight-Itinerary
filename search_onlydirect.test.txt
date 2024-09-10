@@ -1,0 +1,13 @@
+# Make sure that the method works with indirect flights without a match.
+
+# commands to execute:
+create test1 test16 3000
+search "Seattle WA" "Null WA" 1 20 5
+quit
+*
+
+# expected user output:
+Created user test1
+No flights match your selection
+Goodbye
+*

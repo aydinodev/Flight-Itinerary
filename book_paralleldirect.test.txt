@@ -1,0 +1,74 @@
+# Two terminals where one user books a flight
+# and the other user books a flight to the same location
+
+# Terminal 1's commands/inputs:
+create test1 test1 1000
+login test1 test1
+search "Seattle WA" "Boston MA" 1 1 1
+book 0
+quit
+*
+
+# Scenario 1 of 2: Books flight with ID 1
+Created user test1
+Logged in as test1
+Itinerary 0: 1 flight(s), 297 minutes
+ID: 60454 Day: 1 Carrier: AS Number: 24 Origin: Seattle WA Dest: Boston MA Duration: 297 Capacity: 14 Price: 140
+Booked flight(s), reservation ID: 1
+Goodbye
+
+|
+
+# Scenario 2 of 2: Books flight with ID 2
+Created user test1
+Logged in as test1
+Itinerary 0: 1 flight(s), 297 minutes
+ID: 60454 Day: 1 Carrier: AS Number: 24 Origin: Seattle WA Dest: Boston MA Duration: 297 Capacity: 14 Price: 140
+Booked flight(s), reservation ID: 2
+Goodbye
+*
+
+##################### Concurrently executed commands: #####################
+
+# Terminal 2's commands/inputs:
+create test2 test2 10000
+login test2 test2
+search "Seattle WA" "Boston MA" 1 1 5
+book 0
+quit
+*
+
+# Scenario 1 of 2: Books flight with ID 2
+Created user test2
+Logged in as test2
+Itinerary 0: 1 flight(s), 297 minutes
+ID: 60454 Day: 1 Carrier: AS Number: 24 Origin: Seattle WA Dest: Boston MA Duration: 297 Capacity: 14 Price: 140
+Itinerary 1: 1 flight(s), 297 minutes
+ID: 721557 Day: 1 Carrier: B6 Number: 1698 Origin: Seattle WA Dest: Boston MA Duration: 297 Capacity: 8 Price: 980
+Itinerary 2: 1 flight(s), 301 minutes
+ID: 706671 Day: 1 Carrier: AS Number: 734 Origin: Seattle WA Dest: Boston MA Duration: 301 Capacity: 11 Price: 268
+Itinerary 3: 1 flight(s), 303 minutes
+ID: 702979 Day: 1 Carrier: AS Number: 24 Origin: Seattle WA Dest: Boston MA Duration: 303 Capacity: 12 Price: 225
+Itinerary 4: 1 flight(s), 305 minutes
+ID: 717866 Day: 1 Carrier: B6 Number: 498 Origin: Seattle WA Dest: Boston MA Duration: 305 Capacity: 3 Price: 946
+Booked flight(s), reservation ID: 2
+Goodbye
+
+|
+
+# Scenario 2 of 2: Books flight with ID 1
+Created user test2
+Logged in as test2
+Itinerary 0: 1 flight(s), 297 minutes
+ID: 60454 Day: 1 Carrier: AS Number: 24 Origin: Seattle WA Dest: Boston MA Duration: 297 Capacity: 14 Price: 140
+Itinerary 1: 1 flight(s), 297 minutes
+ID: 721557 Day: 1 Carrier: B6 Number: 1698 Origin: Seattle WA Dest: Boston MA Duration: 297 Capacity: 8 Price: 980
+Itinerary 2: 1 flight(s), 301 minutes
+ID: 706671 Day: 1 Carrier: AS Number: 734 Origin: Seattle WA Dest: Boston MA Duration: 301 Capacity: 11 Price: 268
+Itinerary 3: 1 flight(s), 303 minutes
+ID: 702979 Day: 1 Carrier: AS Number: 24 Origin: Seattle WA Dest: Boston MA Duration: 303 Capacity: 12 Price: 225
+Itinerary 4: 1 flight(s), 305 minutes
+ID: 717866 Day: 1 Carrier: B6 Number: 498 Origin: Seattle WA Dest: Boston MA Duration: 305 Capacity: 3 Price: 946
+Booked flight(s), reservation ID: 1
+Goodbye
+*
